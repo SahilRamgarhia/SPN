@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPN College BCA - Student Marks</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background: #1abc9c;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SPN College - BCA Department</h1>
+    <p>Internal & External Marks Entry Portal</p>
+</header>
+
+<div class="container">
+    <h2>Enter Student Marks</h2>
+    <form id="marksForm">
+        <input type="text" id="studentName" placeholder="Student Name" required>
+        <input type="text" id="rollNumber" placeholder="Roll Number" required>
+        <input type="text" id="subject" placeholder="Subject" required>
+        <input type="number" id="internalMarks" placeholder="Internal Marks (out of 10)" min="0" max="10" required>
+        <input type="number" id="externalMarks" placeholder="External Marks (out of 50)" min="0" max="50" required>
+        <button type="submit">Add Marks</button>
+    </form>
+
+    <h2>Marks Records</h2>
+    <table id="marksTable">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Roll Number</th>
+                <th>Subject</th>
+                <th>Internal Marks</th>
+                <th>External Marks</th>
+                <th>Total Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Entries will go here -->
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    &copy; 2025 SPN College - BCA Department
+</footer>
+
+<script>
+    const form = document.getElementById('marksForm');
+    const tableBody = document.querySelector('#marksTable tbody');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('studentName').value;
+        const roll = document.getElementById('rollNumber').value;
+        const subject = document.getElementById('subject').value;
+        const internal = parseInt(document.getElementById('internalMarks').value);
+        const external = parseInt(document.getElementById('externalMarks').value);
+        const total = internal + external;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${roll}</td>
+            <td>${subject}</td>
+            <td>${internal}</td>
+            <td>${external}</td>
+            <td><strong>${total}</strong></td>
+        `;
+
+        tableBody.appendChild(row);
+
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
