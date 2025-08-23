@@ -8,7 +8,9 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      /* background-color: rgb(149, 173, 165);   */
       background-image: url('https://img.freepik.com/free-vector/blue-white-gradient-abstract-background_53876-60241.jpg?t=st=1755449007~exp=1755452607~hmac=182396cdb2f6dca11073bf2df37c0a89b6c8e5917d48251b4a6ac60ae4538ea9&w=2000');
+      /*Replace with your image  */
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -130,25 +132,33 @@
     th {
       background: rgba(0, 0, 0, 0.7);
     }
+
     @media (max-width: 600px) {
-  .form-container, table {
-    width: 95%;
-  }
 
-  header h1 {
-    font-size: 20px;
-  }
+      .form-container,
+      table {
+        width: 95%;
+      }
 
-  #menu-toggle {
-    font-size: 24px;
-  }
+      header h1 {
+        font-size: 20px;
+      }
 
-  th, td {
-    font-size: 12px;
-    padding: 6px;
-  }
-}
+      #menu-toggle {
+        font-size: 24px;
+      }
 
+      th,
+      td {
+        font-size: 12px;
+        padding: 6px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+    }
   </style>
 </head>
 
@@ -195,7 +205,7 @@
     <h2 id="form-title">Enter Student Marks</h2>
     <form id="marksForm" onsubmit="addStudentData(event)">
       <label for="name">Student Name:</label>
-      <input type="text" id="name"   required>
+      <input type="text" id="name" required>
 
       <label for="roll">Roll Number:</label>
       <input type="text" id="roll" required>
@@ -207,16 +217,17 @@
       <input type="number" id="internal" placeholder="Internal Marks (out of 10)" min="0" max="10" required>
 
       <label for="external">External Marks:</label>
-      <input type="number" id="external"  placeholder="External Marks (out of 50)" min="0" max="50" required>
+      <input type="number" id="external" placeholder="External Marks (out of 50)" min="0" max="50" required>
 
       <button type="submit">SUBMIT</button>
 
 
     </form>
-    <div id="successMessage" style="text-align: center; margin-top: 10px; color: rgb(90, 182, 81); font-weight: bold;"></div>
+    <div id="successMessage" style="text-align: center; margin-top: 10px; color: rgb(90, 182, 81); font-weight: bold;">
+    </div>
 
-        <div id="successMessage"></div>
-</p>
+    <div id="successMessage"></div>
+    </p>
   </div>
 
   <table id="studentTable">
@@ -252,7 +263,7 @@
       const formContainer = document.getElementById("form-container");
       const formTitle = document.getElementById("form-title");
 
-      formTitle.textContent = `Enter Student Marks (${course} ${semester} Semester)`;
+      formTitle.textContent = `${course} ${semester} Semester`;
       document.getElementById("marksForm").reset();
       formContainer.style.display = "block";
     }
@@ -267,7 +278,8 @@
       const external = document.getElementById("external").value;
 
       const title = document.getElementById("form-title").textContent;
-      const match = title.match(/\((.*?) (.*?) Semester\)/);
+      const match = title.match(/^(.*?) (.*?) Semester$/);
+
       const course = match ? match[1] : "Unknown";
       const semester = match ? match[2] : "Unknown";
 
@@ -289,18 +301,19 @@
       // Show table
       table.style.display = "table";
 
-      
+
 
       // Reset & hide form
       document.getElementById("marksForm").reset();
+
       //  Show success message
-  const messageDiv = document.getElementById("successMessage");
-  messageDiv.textContent = "Student data entered successfully!";
-  
-  // Remove after 3 seconds
-  setTimeout(() => {
-    messageDiv.textContent = "";
-  }, 3000);
+      const messageDiv = document.getElementById("successMessage");
+      messageDiv.textContent = "Student data entered successfully!";
+
+      // Remove after 3 seconds
+      setTimeout(() => {
+        messageDiv.textContent = "";
+      }, 3000);
     }
   </script>
 </body>
